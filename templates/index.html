@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="bi bi-geo-alt"></i> 選擇縣市查看天氣預報
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if not api_key_configured %}
+                    <div class="alert alert-warning" role="alert">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <strong>注意：</strong>請設定環境變數 CWA_API_KEY 以使用天氣預報功能
+                    </div>
+                {% endif %}
+
+                <form method="GET" action="{{ url_for('index') }}">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-8">
+                            <label for="location" class="form-label">選擇縣市</label>
+                            <select class="form-select" id="location" name="location" required>
+                                <option value="">請選擇縣市...</option>
+                                {% for county in counties %}
+                                    <option value="{{ county }}" 
+                                            {% if county == selected_location %}selected{% endif %}>
+                                        {{ county }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary w-100" 
+                                    {% if not api_key_configured %}disabled{% endif %}>
+                                <i class="bi bi-search"></i> 查詢天氣
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if error_message %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                {{ error_message }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if forecast_data %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-geo-alt-fill"></i> {{ forecast_data.location }} 36小時天氣預報
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for slot in forecast_data.time_slots %}
+                            {% include '_forecast_card.html' %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}
