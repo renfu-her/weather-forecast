@@ -67,7 +67,7 @@ Navigate to `http://localhost:5000`.
 ## Tech stack
 
 - Backend: Flask 2.3.3
-- Frontend: Bootstrap 5.3.0 + Bootstrap Icons
+- Frontend: Bootstrap 5.3.0 + Font Awesome 6
 - API: CWA dataset `F-C0032-001`
 - Cache: In-memory with 5-minute TTL
 

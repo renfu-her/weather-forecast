@@ -11,25 +11,27 @@
             </h6>
             
             <div class="weather-icon mb-3">
-                {% set weather_code = slot.weather_code %}
-                {% if weather_code == '01' %}
-                    <i class="bi bi-sun text-warning" style="font-size: 3rem;"></i>
-                {% elif weather_code == '02' %}
-                    <i class="bi bi-cloud-sun text-warning" style="font-size: 3rem;"></i>
-                {% elif weather_code == '03' %}
-                    <i class="bi bi-cloud text-secondary" style="font-size: 3rem;"></i>
-                {% elif weather_code == '04' %}
-                    <i class="bi bi-clouds text-secondary" style="font-size: 3rem;"></i>
-                {% elif weather_code == '05' %}
-                    <i class="bi bi-cloud-rain text-primary" style="font-size: 3rem;"></i>
-                {% elif weather_code == '06' %}
-                    <i class="bi bi-cloud-rain-heavy text-primary" style="font-size: 3rem;"></i>
-                {% elif weather_code == '07' %}
-                    <i class="bi bi-cloud-snow text-info" style="font-size: 3rem;"></i>
-                {% elif weather_code == '08' %}
-                    <i class="bi bi-cloud-lightning text-warning" style="font-size: 3rem;"></i>
+                {% set weather_desc = slot.weather %}
+                {% if '晴' in weather_desc and '多雲' in weather_desc %}
+                    <i class="fa-solid fa-cloud-sun text-warning" style="font-size: 3rem;"></i>
+                {% elif '多雲' in weather_desc and '陰' in weather_desc %}
+                    <i class="fa-solid fa-cloud text-secondary" style="font-size: 3rem;"></i>
+                {% elif '陰' in weather_desc and '多雲' in weather_desc %}
+                    <i class="fa-solid fa-cloud text-secondary" style="font-size: 3rem;"></i>
+                {% elif '晴' in weather_desc %}
+                    <i class="fa-solid fa-sun text-warning" style="font-size: 3rem;"></i>
+                {% elif '多雲' in weather_desc %}
+                    <i class="fa-solid fa-cloud text-secondary" style="font-size: 3rem;"></i>
+                {% elif '陰' in weather_desc %}
+                    <i class="fa-solid fa-cloud text-secondary" style="font-size: 3rem;"></i>
+                {% elif '雨' in weather_desc %}
+                    <i class="fa-solid fa-cloud-rain text-primary" style="font-size: 3rem;"></i>
+                {% elif '雪' in weather_desc %}
+                    <i class="fa-solid fa-snowflake text-info" style="font-size: 3rem;"></i>
+                {% elif '雷' in weather_desc or '閃電' in weather_desc %}
+                    <i class="fa-solid fa-cloud-bolt text-warning" style="font-size: 3rem;"></i>
                 {% else %}
-                    <i class="bi bi-question-circle text-muted" style="font-size: 3rem;"></i>
+                    <i class="fa-regular fa-circle-question text-muted" style="font-size: 3rem;"></i>
                 {% endif %}
             </div>
             
