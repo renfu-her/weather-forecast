@@ -19,9 +19,11 @@
 
                 <form method="GET" action="{{ url_for('index') }}">
                     <div class="row g-3 align-items-end">
-                        <div class="col-md-8">
+                        <div class="col-12">
                             <label for="location" class="form-label">選擇縣市</label>
-                            <select class="form-select" id="location" name="location" required>
+                            <select class="form-select w-100" id="location" name="location" required
+                                    {% if not api_key_configured %}disabled{% endif %}
+                                    onchange="if(this.value) this.form.submit();">
                                 <option value="">請選擇縣市...</option>
                                 {% for county in counties %}
                                     <option value="{{ county }}" 
@@ -30,12 +32,7 @@
                                     </option>
                                 {% endfor %}
                             </select>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary w-100" 
-                                    {% if not api_key_configured %}disabled{% endif %}>
-                                <i class="bi bi-search"></i> 查詢天氣
-                            </button>
+                            <div class="form-text">選擇後自動查詢</div>
                         </div>
                     </div>
                 </form>
