@@ -28,7 +28,7 @@
                                 {% for county in counties %}
                                     <option value="{{ county }}" 
                                             {% if county == selected_location %}selected{% endif %}>
-                                        {{ county }}
+                                        {{ county.replace('市','').replace('縣','') }}
                                     </option>
                                 {% endfor %}
                             </select>
