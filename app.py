@@ -152,7 +152,8 @@ def index():
                          selected_location=location,
                          forecast_data=forecast_data,
                          error_message=error_message,
-                         api_key_configured=bool(CWA_API_KEY))
+                         api_key_configured=bool(CWA_API_KEY),
+                         asset_version=int(time.time()))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

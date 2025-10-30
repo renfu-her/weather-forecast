@@ -11,9 +11,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
-    <!-- Favicon: local SVG + fallback -->
-    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <!-- Favicon: local SVG with cache-busting version -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg', v=asset_version) }}" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg', v=asset_version) }}" type="image/svg+xml">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
